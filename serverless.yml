@@ -1,7 +1,21 @@
 service: aws-node-express-api-project
 frameworkVersion: '3'
 
+package:
+  individually: true
 custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude: ['aws-sdk']
+    target: 'node14'
+    define: { 'require.resolve': undefined }
+    platform: 'node'
+    concurrency: 10
+    watch:
+      pattern: ['src/**/*.ts'] # match only typescript files in src directory
+      ignore: ['temp/**/*']
   userTableName: 'users-table-${sls:stage}'
   todoTableName: 'todos-table-${sls:stage}'
   dynamodb:
@@ -48,7 +62,8 @@ functions:
 
 plugins:
   - serverless-dotenv-plugin
-  - serverless-plugin-typescript
+  - serverless-esbuild
+  # - serverless-plugin-typescript
   - serverless-dynamodb-local
   - serverless-offline
 

@@ -25,6 +25,9 @@ const dynamoDbClient = process.env.IS_OFFLINE ? new AWS.DynamoDB.DocumentClient(
 })
 
 app.get("/", async (req, res, next) => {
+  const name = new Name('john');
+  const x = name.func()
+
 
   return res.status(200).json({
     message: "Hello from root!",
@@ -45,7 +48,7 @@ app.get("/hello", async (req, res, next) => {
   // console.log(Item);
   
   return res.status(200).json({
-    message: "Hello from path!"+JSON.stringify(response),
+    message: "Hello from path!!!!!!!"+JSON.stringify(response),
   });
 });
 app.get("/hello2", async (req, res, next) => {
@@ -71,3 +74,12 @@ app.use((req, res, next) => {
 });
 
 export const handler = serverlessExpress({app});
+
+
+class Name {
+  constructor(name: string) {
+  }
+  func = () => {
+    return 'xxx';
+  }
+}
