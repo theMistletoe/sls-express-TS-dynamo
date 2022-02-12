@@ -46,6 +46,8 @@ provider:
   environment:
     USERS_TABLE: ${self:custom.userTableName}
     TODOS_TABLE: ${self:custom.todoTableName}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+    NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
 
 functions:
   app:
@@ -61,7 +63,7 @@ functions:
           cors: true
 
 plugins:
-  - serverless-dotenv-plugin
+  # - serverless-dotenv-plugin
   - serverless-esbuild
   # - serverless-plugin-typescript
   - serverless-dynamodb-local
