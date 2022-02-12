@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true  ,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "lib": ["es2015"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "lib",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "include": [
+    "src/**/*",
+    "declarations.d.ts"
+  ],
+}
