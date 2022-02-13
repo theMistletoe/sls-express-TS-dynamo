@@ -4,6 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
+    "type-check": "tsc --noEmit",
     "deploy": "serverless deploy",
     "dev": "serverless offline",
     "remove": "serverless remove",
