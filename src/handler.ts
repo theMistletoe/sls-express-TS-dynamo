@@ -24,9 +24,11 @@ const dynamoDbClient = process.env.IS_OFFLINE ? new AWS.DynamoDB.DocumentClient(
   // region: 'ap-northeast-1',
 })
 
-app.get("/", async (req, res, next) => {
+app.get("/", async (_req, res, _next) => {
   const name = new Name('john');
-  const x = name.func()
+  const x = name.func();
+  console.log(x);
+  
 
 
   return res.status(200).json({
@@ -34,7 +36,7 @@ app.get("/", async (req, res, next) => {
   });
 });
 
-app.get("/hello", async (req, res, next) => {
+app.get("/hello", async (_req, res, _next) => {
   
   const params: ScanInput = {
     TableName: USERS_TABLE!,
@@ -51,7 +53,7 @@ app.get("/hello", async (req, res, next) => {
     message: "Hello from path!!!!!!!"+JSON.stringify(response),
   });
 });
-app.get("/hello2", async (req, res, next) => {
+app.get("/hello2", async (_req, res, _next) => {
   const putParams: DocumentClient.PutItemInput = {
     TableName: USERS_TABLE!,
     Item: {
@@ -67,7 +69,7 @@ app.get("/hello2", async (req, res, next) => {
   });
 });
 
-app.use((req, res, next) => {
+app.use((_req, res, _next) => {
   return res.status(404).json({
     error: "Not Found",
   });
@@ -77,9 +79,11 @@ export const handler = serverlessExpress({app});
 
 
 class Name {
-  constructor(name: string) {
+  constructor(private name: string) {
   }
   func = () => {
+    console.log(this.name);
+    
     return 'xxx';
   }
 }
